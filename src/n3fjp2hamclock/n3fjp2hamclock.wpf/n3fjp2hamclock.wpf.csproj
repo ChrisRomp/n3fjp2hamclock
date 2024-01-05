@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>n3fjp2hamclock.ico</ApplicationIcon>
+    <ErrorReport>none</ErrorReport>
+    <Copyright>Copyright (C) 2024 Chris Romp NZ6F</Copyright>
+    <PackageIcon>n3fjp2hamclock.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="n3fjp2hamclock.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="n3fjp2hamclock.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\n3fjp2hamclock.helpers\n3fjp2hamclock.helpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="n3fjp2hamclock.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="n3fjp2hamclock.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

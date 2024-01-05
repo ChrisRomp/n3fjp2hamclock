@@ -1,0 +1,24 @@
+﻿<Window x:Class="n3fjp2hamclock.wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:n3fjp2hamclock.wpf"
+        xmlns:properties="clr-namespace:n3fjp2hamclock.wpf.Properties"
+        mc:Ignorable="d"
+        Title="N3FJP to HamClock" Height="300" Width="550" MinWidth="550" MinHeight="300"
+        Closing="Window_Closing"
+        Icon="n3fjp2hamclock.ico">
+    <Grid>
+        <Label x:Name="lblApiServerHost" Content="N3FJP API Server" HorizontalAlignment="Left" Margin="19,17,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtApiServerHost" HorizontalAlignment="Left" Margin="123,21,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="200" MaxLength="255" Text="{Binding Source={x:Static properties:Settings.Default}, Path=ApiServerHost, Mode=TwoWay}" AutomationProperties.LabeledBy="{Binding ElementName=lblApiServerHost, Mode=OneWay}" AutomationProperties.HelpText="The network hostname or IP address for N3FJP. If this is runnig on the same computer, use localhost."/>
+        <Label x:Name="lblApiServerPort" Content="Port" HorizontalAlignment="Left" Margin="328,17,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtApiServerPort" HorizontalAlignment="Left" Margin="365,21,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="63" MaxLength="5" Text="{Binding Source={x:Static properties:Settings.Default}, Path=ApiServerPort, Mode=TwoWay}" AutomationProperties.LabeledBy="{Binding ElementName=lblApiServerPort, Mode=OneWay}" TextChanged="txtApiServerPort_TextChanged"/>
+        <TextBox x:Name="txtConsole" HorizontalAlignment="Stretch" Margin="20,74,20,20  " TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Text="" IsReadOnly="True" VerticalAlignment="Stretch" Width="Auto" Height="Auto"/>
+        <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="439,20,0,0" VerticalAlignment="Top" Click="btnConnect_Click" Width="86"/>
+        <Label x:Name="lblHamClockUris" Content="HamClock URL(s)" HorizontalAlignment="Left" Margin="19,43,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtHamClockUris" HorizontalAlignment="Left" Margin="125,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="303" Text="{Binding Source={x:Static properties:Settings.Default}, Path=HamClockUris, Mode=TwoWay}" AutomationProperties.LabeledBy="{Binding ElementName=lblHamClockUris, Mode=OneWay}"/>
+        <CheckBox x:Name="ckTrace" Content="Show Trace" HorizontalAlignment="Left" Margin="442,48,0,0" VerticalAlignment="Top" Checked="ckTrace_Checked" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=ShowTrace, Mode=TwoWay}" Unchecked="ckTrace_Unchecked"/>
+
+    </Grid>
+</Window>
