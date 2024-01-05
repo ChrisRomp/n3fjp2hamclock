@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:n3fjp2hamclock.wpf"
         xmlns:properties="clr-namespace:n3fjp2hamclock.wpf.Properties"
         mc:Ignorable="d"
-        Title="N3FJP to HamClock" Height="300" Width="550" MinWidth="550" MinHeight="300"
+        Title="N3FJP to HamClock by NZ6F" Height="300" Width="550" MinWidth="550" MinHeight="300"
         Closing="Window_Closing"
         Icon="n3fjp2hamclock.ico">
     <Grid>

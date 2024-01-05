@@ -11,6 +11,7 @@
     <Copyright>Copyright (C) 2024 Chris Romp NZ6F</Copyright>
     <PackageIcon>n3fjp2hamclock.png</PackageIcon>
     <AssemblyName>n3fjp2hamclock</AssemblyName>
+    <Platforms>x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

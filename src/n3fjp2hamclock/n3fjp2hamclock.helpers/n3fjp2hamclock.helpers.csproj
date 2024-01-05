@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ErrorReport>none</ErrorReport>
+    <Platforms>x86</Platforms>
   </PropertyGroup>
 
 </Project>

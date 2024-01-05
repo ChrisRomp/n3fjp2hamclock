@@ -1,0 +1,32 @@
+﻿<Project Sdk="WixToolset.Sdk/4.0.3">
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Heat" Version="4.0.3" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+	  <ProjectReference Include="..\n3fjp2hamclock.wpf\n3fjp2hamclock.wpf.csproj">
+		  <Name>n3fjp2hamclock.wpf</Name>
+		  <RefTargetDir>n3fjp2hamclock.wpf</RefTargetDir>
+		  <RefProjectOutputGroups>Binaries;Content</RefProjectOutputGroups>
+		  <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+	  </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <HarvestDirectory Include="..\n3fjp2hamclock.wpf\bin\x86\$(Configuration)\net8.0-windows">
+      <ComponentGroupName>AppComponents</ComponentGroupName>
+      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+    </HarvestDirectory>
+    <BindPath Include="..\n3fjp2hamclock.wpf\bin\$(Configuration)\net8.0-windows" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.rtf" />
+  </ItemGroup>
+	<PropertyGroup>
+		<EnableProjectHarvesting>True</EnableProjectHarvesting>
+		<SuppressValidation>True</SuppressValidation>
+	</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <SuppressPdbOutput>true</SuppressPdbOutput>
+  </PropertyGroup>
+</Project>
