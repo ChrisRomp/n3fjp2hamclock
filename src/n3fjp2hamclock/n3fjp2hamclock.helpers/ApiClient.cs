@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
-using System.Text.RegularExpressions;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace n3fjp2hamclock.helpers
 {
@@ -29,7 +29,8 @@ namespace n3fjp2hamclock.helpers
         {
             Logger.Log("Connecting to N3FJP API on " + Host + ":" + Port + "...", LogLevel.Trace);
 
-            try {                 
+            try
+            {
                 _tcpClient = new TcpClient(Host, Port);
                 Logger.Log("Connected to N3FJP API server.", LogLevel.Info);
 
@@ -77,10 +78,14 @@ namespace n3fjp2hamclock.helpers
                         // Update HamClock(s)
                         await _hamClockClient.UpdateHamClocks(lat, lon);
                     }
-                } catch (OperationCanceledException) {
+                }
+                catch (OperationCanceledException)
+                {
                     return;
                 }
-            } catch (SocketException) {
+            }
+            catch (SocketException)
+            {
                 Logger.Log("Error connecting to N3FJP API", LogLevel.Error);
                 throw;
             }

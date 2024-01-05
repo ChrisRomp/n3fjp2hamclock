@@ -46,7 +46,8 @@ namespace n3fjp2hamclock.wpf
                 btnConnect.Content = "Disconnect";
 
                 await _apiClient.Connect();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 LogMessage("Error: " + ex.Message, LogLevel.Error);
                 Disconnect();

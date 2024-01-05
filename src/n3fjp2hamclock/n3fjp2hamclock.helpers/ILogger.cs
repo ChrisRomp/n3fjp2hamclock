@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace n3fjp2hamclock.helpers
+﻿namespace n3fjp2hamclock.helpers
 {
     public interface ILogger
     {
