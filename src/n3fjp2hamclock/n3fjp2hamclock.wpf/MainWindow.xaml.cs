@@ -16,6 +16,9 @@ namespace n3fjp2hamclock.wpf
         public MainWindow()
         {
             InitializeComponent();
+
+            // Show version on startup
+            LogMessage("Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
         }
 
         internal void LogMessage(string message, LogLevel logLevel = LogLevel.Info)
