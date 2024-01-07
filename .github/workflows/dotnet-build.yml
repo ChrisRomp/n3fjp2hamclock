@@ -45,3 +45,12 @@ jobs:
 
     - name: Build Solution
       run: msbuild .\src\n3fjp2hamclock\n3fjp2hamclock.sln -nologo -t:Rebuild -p:Configuration=Release -p:Platform=x86
+
+    # Store MSI
+    - name: Store MSI
+      uses: actions/upload-artifact@v4
+      with:
+        name: n3fjp2hamclock.setup.msi
+        path: .\src\n3fjp2hamclock\n3fjp2hamclock.setup\bin\x86\Release\en-US\n3fjp2hamclock.setup.msi
+        if-no-files-found: error
+        retention-days: 1
