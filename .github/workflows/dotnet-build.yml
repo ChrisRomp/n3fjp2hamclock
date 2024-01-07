@@ -48,6 +48,7 @@ jobs:
 
     # Store MSI
     - name: Store MSI
+      if: github.ref == 'refs/heads/main' # Only store on builds from main
       uses: actions/upload-artifact@v4
       with:
         name: n3fjp2hamclock.setup.msi
