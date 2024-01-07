@@ -1,0 +1,46 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1.3.1
+      with:
+        # Folder location of where vswhere.exe is located if a self-hosted agent
+        # vswhere-path: # optional
+        # Version of Visual Studio to search; defaults to latest if not specified
+        vs-version: 17.8 # optional
+        # Enable searching for pre-release versions of Visual Studio/MSBuild
+        #vs-prerelease: # optional
+        # The preferred processor architecture of MSBuild. Can be either "x86", "x64", or "arm64". "x64" is only available from Visual Studio version 17.0 and later.
+        msbuild-architecture: x86 # optional, default is x86
+
+    # Checkout
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+    # - name: Build
+    #   run: dotnet build --no-restore
+    # - name: Test
+    #   run: dotnet test --no-build --verbosity normal
+
+    - name: Build Solution
+      run: msbuild src\n3fjp2hamclock\n3fjp2hamclock.sln -nologo -t:Rebuild -p:Configuration=Release -p:Platform=x86
