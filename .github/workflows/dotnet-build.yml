@@ -55,3 +55,4 @@ jobs:
         path: .\src\n3fjp2hamclock\n3fjp2hamclock.setup\bin\x86\Release\en-US\n3fjp2hamclock.setup.msi
         if-no-files-found: error
         retention-days: 1
+        compression-level: 0 # no compression
