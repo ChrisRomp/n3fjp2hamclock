@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-
+    name: Build Solution
     runs-on: windows-latest
 
     steps:
