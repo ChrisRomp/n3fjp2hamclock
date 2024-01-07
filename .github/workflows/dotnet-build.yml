@@ -37,11 +37,11 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore .\src\n3fjp2hamclock\n3fjp2hamclock.sln   
     # - name: Build
     #   run: dotnet build --no-restore
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
 
     - name: Build Solution
-      run: msbuild src\n3fjp2hamclock\n3fjp2hamclock.sln -nologo -t:Rebuild -p:Configuration=Release -p:Platform=x86
+      run: msbuild .\src\n3fjp2hamclock\n3fjp2hamclock.sln -nologo -t:Rebuild -p:Configuration=Release -p:Platform=x86
