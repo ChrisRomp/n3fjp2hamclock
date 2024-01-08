@@ -55,9 +55,11 @@ This application is provided with no guarantees it will work for anything. But i
 
 If you wish to compile this application yourself, you are welcome to do so but detailed documentation is beyond the scope of this README.
 
-You will need to download the source code, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), and then you can build using `dotnet build src/n3fjp2hamclock/n3fjp2hamclock.sln`.
+You will need to download the source code, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), and then you can build using ` dotnet build --arch x86 --configuration Release src/n3fjp2hamclock/n3fjp2hamclock.wpf/n3fjp2hamclock.wpf.csproj`.
 
-You should find the exe located under the `src/n3fjp2hamclock/n3fjp2hamclock.wpf/bin/x86/release/net8.0-windows` folder, or the MSI installer will be under the `src/n3fjp2hamclock/n3fjp2hamclock.setup/bin/x86/Release/en-US` folder.
+You should find the compiled application and DLLs located under the `src/n3fjp2hamclock/n3fjp2hamclock.wpf/bin/x86/Release/net8.0-windows` folder.
+
+To build the MSI installer, you will need to use `MSBuild` instead of `dotnet build`, which is included with Visual Studio 2022 (you can download the [Community Edition](https://visualstudio.microsoft.com/vs/community/) for free). Once built, the MSI installer will be under the `src/n3fjp2hamclock/n3fjp2hamclock.setup/bin/x86/Release/en-US` folder. Or you can install the [WiX v4 toolset](https://wixtoolset.org/docs/intro/).
 
 ---
 
