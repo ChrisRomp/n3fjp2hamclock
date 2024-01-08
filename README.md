@@ -12,9 +12,11 @@ You can also download the latest version or past versions from the [Releases](ht
 
 ## Installing
 
-Run the downloaded MSI file as you would any other application.
+**Prerequisite:** This app requires the [.NET 8.0 desktop x86 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x86-installer?cid=getdotnetcore) to be installed to run. You can download that from Microsoft [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x86-installer?cid=getdotnetcore).
 
-NOTE: Windows and/or your browser may give a warning or block the installation because this is not a commonly-downloaded application. This is expected behavior. If you don't trust the installer, you can also compile your own build from the source code here.
+To install N3FJP2HamClock, run the downloaded [n3fjp2hamclock.setup.msi](https://github.com/ChrisRomp/n3fjp2hamclock/releases/latest/download/n3fjp2hamclock.setup.msi) file as you would any other application installer.
+
+NOTE: Windows and/or your browser may give a warning or block the installation because this is not a commonly-downloaded application. This is expected behavior. If you don't trust the installer, you can also [compile your own build](#building-from-source) from the source code here.
 
 ## Configuring N3FJP
 
@@ -47,7 +49,15 @@ This application is provided with no guarantees it will work for anything. But i
 - [HamClock](https://www.clearskyinstitute.com/ham/HamClock/)
   - See HamClock FAQ #42 for a description of its API. This app is calling the `set_newdx` method.
 - [N3FJP Software](https://www.n3fjp.com/)
-- [N3FJP API](https://www.n3fjp.com/help/api.html)
+  - [N3FJP API Documentation](https://www.n3fjp.com/help/api.html)
+
+## Building from Source
+
+If you wish to compile this application yourself, you are welcome to do so but detailed documentation is beyond the scope of this README.
+
+You will need to download the source code, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), and then you can build using `dotnet build src/n3fjp2hamclock/n3fjp2hamclock.sln`.
+
+You should find the exe located under the `src/n3fjp2hamclock/n3fjp2hamclock.wpf/bin/x86/release/net8.0-windows` folder, or the MSI installer will be under the `src/n3fjp2hamclock/n3fjp2hamclock.setup/bin/x86/Release/en-US` folder.
 
 ---
 
