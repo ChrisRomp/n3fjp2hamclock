@@ -4,6 +4,8 @@ N3FJP2HamClock is a Windows application to synchronize HamClock with the call si
 
 This application connects to the N3FJP API server, and when you tab out of the call sign field, it will update your HamClock(s) with the DX of the entered call.
 
+![Dotnet Build](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/dotnet-build.yml/badge.svg) [![Super-Linter](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/super-linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ## Downloading
 
 [Click here to download](https://github.com/ChrisRomp/n3fjp2hamclock/releases/latest/download/n3fjp2hamclock.setup.msi) the latest version.
