@@ -1,16 +1,17 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+---
 
 name: .NET Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
     paths: 
       - 'src/**'
       - '.github/workflows/**'
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
     paths: 
       - 'src/**'
       - '.github/workflows/**'
@@ -22,43 +23,44 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1.3.1
-      with:
-        # Folder location of where vswhere.exe is located if a self-hosted agent
-        # vswhere-path: # optional
-        # Version of Visual Studio to search; defaults to latest if not specified
-        vs-version: 17.8 # optional
-        # Enable searching for pre-release versions of Visual Studio/MSBuild
-        #vs-prerelease: # optional
-        # The preferred processor architecture of MSBuild. Can be either "x86", "x64", or "arm64". "x64" is only available from Visual Studio version 17.0 and later.
-        msbuild-architecture: x86 # optional, default is x86
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          # Version of Visual Studio to search; defaults to latest
+          vs-version: 17.8 # optional
+          # Enable searching for pre-release versions of Visual Studio/MSBuild
+          #vs-prerelease: # optional
+          # The preferred processor architecture of MSBuild. Can be either
+          # "x86", "x64", or "arm64". "x64" is only available from Visual
+          # Studio version 17.0 and later.
+          msbuild-architecture: x86 # optional, default is x86
 
-    # Checkout
-    - uses: actions/checkout@v3
+      # Checkout
+      - uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 8.0.x
-        
-    - name: Restore dependencies
-      run: dotnet restore .\src\n3fjp2hamclock\n3fjp2hamclock.sln   
-    # - name: Build
-    #   run: dotnet build --no-restore
-    # - name: Test
-    #   run: dotnet test --no-build --verbosity normal
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Build Solution
-      run: msbuild .\src\n3fjp2hamclock\n3fjp2hamclock.sln -nologo -t:Rebuild -p:Configuration=Release -p:Platform=x86
+      - name: Restore dependencies
+        run: dotnet restore .\src\n3fjp2hamclock\n3fjp2hamclock.sln
+      # - name: Build
+      #   run: dotnet build --no-restore
+      # - name: Test
+      #   run: dotnet test --no-build --verbosity normal
 
-    # Store MSI
-    - name: Store MSI
-      if: github.ref == 'refs/heads/main' # Only store on builds from main
-      uses: actions/upload-artifact@v4
-      with:
-        name: n3fjp2hamclock.setup.msi
-        path: .\src\n3fjp2hamclock\n3fjp2hamclock.setup\bin\x86\Release\en-US\n3fjp2hamclock.setup.msi
-        if-no-files-found: error
-        retention-days: 1
-        compression-level: 0 # no compression
+      - name: Build Solution
+        # yamllint disable-line rule:line-length
+        run: msbuild .\src\n3fjp2hamclock\n3fjp2hamclock.sln -nologo -t:Rebuild -p:Configuration=Release -p:Platform=x86
+
+      # Store MSI
+      - name: Store MSI
+        if: github.ref == 'refs/heads/main' # Only store on builds from main
+        uses: actions/upload-artifact@v4
+        with:
+          name: n3fjp2hamclock.setup.msi
+          path: .\src\n3fjp2hamclock\n3fjp2hamclock.setup\bin\x86\Release\en-US\n3fjp2hamclock.setup.msi
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0 # no compression
