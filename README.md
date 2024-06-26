@@ -33,7 +33,7 @@ Launch N3FJP2HamClock from your Start menu, or from the application folder.
 
 Fields:
 
-- N3FJP API Server: This is the computer hostname running your N3FJP logging software. 
+- N3FJP API Server: This is the computer hostname running your N3FJP logging software.
 - Port: The TCP port N3FJP is listening on.
 - HamClock URL(s): Enter the web URL for one or more HamClocks to their REST API port (not the `live.html` port if you're using the web version). If you have more than one HamClock, you can enter them separated by commas, e.g.: `http://hamclock1:8080, http://hamclock2:8080`.
 - Show Trace: You can leave this unchecked unless we need more information to troubleshoot an issue, or if you just like to see that sort of thing. Otherwise it's very chatty and will show the raw output from the N3FJP API server and some additional diagnostic information from this app.
@@ -55,7 +55,7 @@ This application is provided with no guarantees it will work for anything. But i
 
 If you wish to compile this application yourself, you are welcome to do so but detailed documentation is beyond the scope of this README.
 
-You will need to download the source code, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), and then you can build using ` dotnet build --arch x86 --configuration Release src/n3fjp2hamclock/n3fjp2hamclock.wpf/n3fjp2hamclock.wpf.csproj`.
+You will need to download the source code, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), and then you can build using `dotnet build --arch x86 --configuration Release src/n3fjp2hamclock/n3fjp2hamclock.wpf/n3fjp2hamclock.wpf.csproj`.
 
 You should find the compiled application and DLLs located under the `src/n3fjp2hamclock/n3fjp2hamclock.wpf/bin/x86/Release/net8.0-windows` folder.
 
