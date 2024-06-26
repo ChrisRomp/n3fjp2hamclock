@@ -17,6 +17,8 @@ on:
       - '.github/workflows/**'
   workflow_dispatch: 
 
+permissions: read-all
+
 jobs:
   build:
     name: Build Solution
