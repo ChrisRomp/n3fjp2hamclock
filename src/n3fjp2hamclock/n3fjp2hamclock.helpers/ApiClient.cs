@@ -38,7 +38,7 @@ namespace n3fjp2hamclock.helpers
                 using var stream = _tcpClient.GetStream();
                 byte[] buffer = new byte[1024];
                 int bytesRead;
-                
+
                 // Clear any previous data in the buffer
                 _messageBuffer.Clear();
 
@@ -50,10 +50,10 @@ namespace n3fjp2hamclock.helpers
                     {
                         string chunk = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                         Logger.Log("[N3FJP API] " + chunk, LogLevel.Trace);
-                        
+
                         // Append the received chunk to our buffer
                         _messageBuffer.Append(chunk);
-                        
+
                         // Process complete commands in the buffer
                         await ProcessBufferedCommands();
                     }
@@ -71,7 +71,7 @@ namespace n3fjp2hamclock.helpers
 
             _tcpClient = new TcpClient(Host, Port);
         }
-        
+
         /// <summary>
         /// Process complete commands in the message buffer
         /// </summary>
@@ -80,7 +80,7 @@ namespace n3fjp2hamclock.helpers
             string bufferContent = _messageBuffer.ToString();
             int cmdStartPos = 0;
             int cmdEndPos = 0;
-            
+
             // Find complete <CMD>...</CMD> blocks in the buffer
             while ((cmdStartPos = bufferContent.IndexOf("<CMD>", cmdStartPos)) != -1)
             {
@@ -90,13 +90,13 @@ namespace n3fjp2hamclock.helpers
                     // No complete command found, keep data in buffer and wait for more
                     break;
                 }
-                
+
                 // Include the </CMD> tag in the extracted command
                 cmdEndPos += "</CMD>".Length;
-                
+
                 // Extract the complete command
                 string completeCommand = bufferContent.Substring(cmdStartPos, cmdEndPos - cmdStartPos);
-                
+
                 try
                 {
                     // Process the command
@@ -129,16 +129,16 @@ namespace n3fjp2hamclock.helpers
                     Logger.Log($"Error processing command: {ex.Message}", LogLevel.Error);
                     // Continue processing other commands even if one fails
                 }
-                
+
                 // Move to the position after this command
                 cmdStartPos = cmdEndPos;
             }
-            
+
             // Remove processed commands from the buffer
             if (cmdStartPos > 0)
             {
                 _messageBuffer.Remove(0, cmdStartPos);
-                
+
                 // Safety check: if buffer gets too large (likely due to malformed data),
                 // clear it to prevent memory issues
                 if (_messageBuffer.Length > 32768) // 32 KB
@@ -153,7 +153,7 @@ namespace n3fjp2hamclock.helpers
         {
             Logger.Log("Disconnecting from N3FJP API...", LogLevel.Trace);
             _cancellationTokenSource?.Cancel();
-            
+
             // Clear the message buffer
             _messageBuffer.Clear();
 
