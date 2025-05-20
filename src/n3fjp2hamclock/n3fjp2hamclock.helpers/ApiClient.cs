@@ -97,26 +97,37 @@ namespace n3fjp2hamclock.helpers
                 // Extract the complete command
                 string completeCommand = bufferContent.Substring(cmdStartPos, cmdEndPos - cmdStartPos);
                 
-                // Process the command
-                if (completeCommand.Contains("<CALLTABEVENT>"))
+                try
                 {
-                    // CallTab event received
-                    var callSign = CallSignRegEx().Match(completeCommand).Value;
-                    //var frequency = FrequencyRegEx().Match(completeCommand).Value;
-                    //var mode = ModeRegEx().Match(completeCommand).Value;
-                    var lat = LatRegEx().Match(completeCommand).Value;
-                    var lon = LonRegEx().Match(completeCommand).Value;
+                    // Process the command
+                    if (completeCommand.Contains("<CALLTABEVENT>"))
+                    {
+                        // CallTab event received
+                        var callSign = CallSignRegEx().Match(completeCommand).Value;
+                        //var frequency = FrequencyRegEx().Match(completeCommand).Value;
+                        //var mode = ModeRegEx().Match(completeCommand).Value;
+                        var lat = LatRegEx().Match(completeCommand).Value;
+                        var lon = LonRegEx().Match(completeCommand).Value;
 
-                    // Print to console
-                    Logger.Log("CallTab event received:", LogLevel.Info);
-                    Logger.Log("  Call: " + callSign, LogLevel.Info);
-                    //Logger.Log("  Frequency: " + frequency, LogLevel.Trace);
-                    //Logger.Log("  Mode: " + mode, LogLevel.Trace);
-                    Logger.Log("  Lat: " + lat, LogLevel.Info);
-                    Logger.Log("  Lon: " + lon, LogLevel.Info);
+                        // Print to console
+                        Logger.Log("CallTab event received:", LogLevel.Info);
+                        Logger.Log("  Call: " + callSign, LogLevel.Info);
+                        //Logger.Log("  Frequency: " + frequency, LogLevel.Trace);
+                        //Logger.Log("  Mode: " + mode, LogLevel.Trace);
+                        Logger.Log("  Lat: " + lat, LogLevel.Info);
+                        Logger.Log("  Lon: " + lon, LogLevel.Info);
 
-                    // Update HamClock(s)
-                    await _hamClockClient.UpdateHamClocks(lat, lon);
+                        // Update HamClock(s) only if we have valid lat/lon
+                        if (!string.IsNullOrEmpty(lat) && !string.IsNullOrEmpty(lon))
+                        {
+                            await _hamClockClient.UpdateHamClocks(lat, lon);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log($"Error processing command: {ex.Message}", LogLevel.Error);
+                    // Continue processing other commands even if one fails
                 }
                 
                 // Move to the position after this command
@@ -127,6 +138,14 @@ namespace n3fjp2hamclock.helpers
             if (cmdStartPos > 0)
             {
                 _messageBuffer.Remove(0, cmdStartPos);
+                
+                // Safety check: if buffer gets too large (likely due to malformed data),
+                // clear it to prevent memory issues
+                if (_messageBuffer.Length > 32768) // 32 KB
+                {
+                    Logger.Log("Buffer too large, clearing to prevent memory issues", LogLevel.Error);
+                    _messageBuffer.Clear();
+                }
             }
         }
 
