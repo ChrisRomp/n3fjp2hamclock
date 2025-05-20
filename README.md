@@ -55,7 +55,7 @@ This application is provided with no guarantees it will work for anything. But i
 
 ## Building from Source
 
-If you wish to compile this application yourself, you are welcome to do so but detailed documentation is beyond the scope of this README.
+If you wish to compile this application yourself, you are welcome to do so but detailed documentation is beyond the scope of this readme.
 
 You will need to download the source code, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), and then you can build using `dotnet build --arch x86 --configuration Release src/n3fjp2hamclock/n3fjp2hamclock.wpf/n3fjp2hamclock.wpf.csproj`.
 
