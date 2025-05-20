@@ -6,6 +6,7 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 permissions: { }
 
@@ -27,6 +28,10 @@ jobs:
           # super-linter needs the full git history to get the
           # list of files that changed across commits
           fetch-depth: 0
+
+      - name: Dotnet restore
+        run: dotnet restore
+        working-directory: src/n3fjp2hamclock
 
       - name: Super-linter
         uses: super-linter/super-linter@v7.1.0
