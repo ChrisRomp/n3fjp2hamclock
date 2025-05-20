@@ -1,7 +1,7 @@
 {
-    "threshold": 20,
-    "minTokens": 50,
-    "output": "./",
-    "pattern": ["**/*.cs", "**/*.xaml", "**/*.json", "**/*.config"],
-    "ignore": ["**/bin/**", "**/obj/**"]
+  "threshold": 20,
+  "minTokens": 50,
+  "output": "./",
+  "pattern": ["**/*.cs", "**/*.xaml", "**/*.json", "**/*.config"],
+  "ignore": ["**/bin/**", "**/obj/**"]
 }

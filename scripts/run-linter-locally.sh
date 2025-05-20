@@ -16,6 +16,8 @@ docker run --rm \
 	-e VALIDATE_SHELL_SHFMT=true \
 	-e FIX_SHELL_SHFMT=true \
 	-e VALIDATE_JSCPD=true \
+	-e VALIDATE_JSON_PRETTIER=true \
+	-e FIX_JSON_PRETTIER=true \
 	-e JSCPD_CONFIG_FILE=.jscpd.json \
 	-v "$CODESPACE_VSCODE_FOLDER":/tmp/lint \
 	-v "$CODESPACE_VSCODE_FOLDER/../super-linter-output":/tmp/super-linter-output \
