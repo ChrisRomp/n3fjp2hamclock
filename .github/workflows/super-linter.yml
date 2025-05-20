@@ -29,18 +29,9 @@ jobs:
           # list of files that changed across commits
           fetch-depth: 0
 
-      - name: Create jscpd config file
-        run: |
-          echo '{
-            "threshold": 20,
-            "minTokens": 50,
-            "output": "./",
-            "pattern": "**/*.cs",
-            "ignore": "**/bin/*,**/obj/*"        
-          }' > .jscpd.json
-
       - name: Super-linter
         uses: super-linter/super-linter@v7.4.0
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JSCPD_CONFIG_FILE: .jscpd.json
