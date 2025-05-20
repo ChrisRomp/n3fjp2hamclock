@@ -12,6 +12,7 @@
     <PackageIcon>n3fjp2hamclock.png</PackageIcon>
     <AssemblyName>n3fjp2hamclock</AssemblyName>
     <Platforms>x86</Platforms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
   <ItemGroup>

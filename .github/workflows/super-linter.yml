@@ -6,8 +6,9 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
-permissions: { }
+permissions: {}
 
 jobs:
   build:
@@ -29,7 +30,8 @@ jobs:
           fetch-depth: 0
 
       - name: Super-linter
-        uses: super-linter/super-linter@v7.1.0
+        uses: super-linter/super-linter@v7.4.0
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JSCPD_CONFIG_FILE: .jscpd.json

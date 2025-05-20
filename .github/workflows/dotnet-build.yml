@@ -1,21 +1,20 @@
 ---
-
 name: .NET Build
 
 on:
   push:
     branches:
       - main
-    paths: 
-      - 'src/**'
-      - '.github/workflows/**'
+    paths:
+      - "src/**"
+      - ".github/workflows/**"
   pull_request:
     branches:
       - main
-    paths: 
-      - 'src/**'
-      - '.github/workflows/**'
-  workflow_dispatch: 
+    paths:
+      - "src/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
 
 permissions: read-all
 
