@@ -152,6 +152,7 @@ namespace n3fjp2hamclock.tests
                 Times.Once(),
                 ItExpr.Is<HttpRequestMessage>(req => 
                     req.Method == HttpMethod.Get && 
+                    req.RequestUri != null &&
                     req.RequestUri.ToString() == "http://example.com/set_newdx?lat=41.7144&lng=-72.7289"),
                 ItExpr.IsAny<CancellationToken>()
             );
