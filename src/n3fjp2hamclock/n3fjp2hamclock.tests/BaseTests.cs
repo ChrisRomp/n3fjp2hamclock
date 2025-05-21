@@ -18,12 +18,12 @@ namespace n3fjp2hamclock.tests
         /// <summary>
         /// Verify we can create a logger
         /// </summary>
-        [Fact] 
+        [Fact]
         public void TestLogger_CanCreateAndUse()
         {
             var logger = new TestLogger();
             logger.Log("Test message", LogLevel.Info);
-            
+
             Assert.True(logger.ContainsLog("Test message", LogLevel.Info));
         }
     }

@@ -18,17 +18,17 @@ namespace n3fjp2hamclock.tests
         {
             return _logs;
         }
-        
+
         public bool ContainsLog(string messageSubstring, LogLevel level)
         {
             return _logs.Any(log => log.Item1.Contains(messageSubstring) && log.Item2 == level);
         }
-        
+
         public int CountLogs(string messageSubstring, LogLevel level)
         {
             return _logs.Count(log => log.Item1.Contains(messageSubstring) && log.Item2 == level);
         }
-        
+
         public void Clear()
         {
             _logs.Clear();
