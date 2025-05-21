@@ -11,6 +11,7 @@ namespace n3fjp2hamclock.helpers
         private TcpClient? _tcpClient;
         private readonly ILogger Logger;
         private CancellationTokenSource? _cancellationTokenSource;
+        private StringBuilder _messageBuffer = new StringBuilder();
 
         private readonly HamClockClient _hamClockClient;
 
@@ -38,45 +39,23 @@ namespace n3fjp2hamclock.helpers
                 byte[] buffer = new byte[1024];
                 int bytesRead;
 
+                // Clear any previous data in the buffer
+                _messageBuffer.Clear();
+
                 _cancellationTokenSource = new CancellationTokenSource();
 
                 try
                 {
                     while ((bytesRead = await stream.ReadAsync(buffer, _cancellationTokenSource.Token)) > 0)
                     {
-                        string message = Encoding.ASCII.GetString(buffer, 0, bytesRead).Trim();
-                        Logger.Log("[N3FJP API] " + message, LogLevel.Trace);
+                        string chunk = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                        Logger.Log("[N3FJP API] " + chunk, LogLevel.Trace);
 
-                        // Verify message starts with <CMD>
-                        if (!message.StartsWith("<CMD>"))
-                        {
-                            Logger.Log("Invalid message received: " + message, LogLevel.Error);
-                            continue;
-                        }
+                        // Append the received chunk to our buffer
+                        _messageBuffer.Append(chunk);
 
-                        // Check for <CALLTABEVENT> message
-                        if (!message.Contains("<CALLTABEVENT>"))
-                        {
-                            continue;
-                        }
-
-                        // CallTab event received
-                        var callSign = CallSignRegEx().Match(message).Value;
-                        //var frequency = FrequencyRegEx().Match(message).Value;
-                        //var mode = ModeRegEx().Match(message).Value;
-                        var lat = LatRegEx().Match(message).Value;
-                        var lon = LonRegEx().Match(message).Value;
-
-                        // Print to console
-                        Logger.Log("CallTab event received:", LogLevel.Info);
-                        Logger.Log("  Call: " + callSign, LogLevel.Info);
-                        //Logger.Log("  Frequency: " + frequency, LogLevel.Trace);
-                        //Logger.Log("  Mode: " + mode, LogLevel.Trace);
-                        Logger.Log("  Lat: " + lat, LogLevel.Info);
-                        Logger.Log("  Lon: " + lon, LogLevel.Info);
-
-                        // Update HamClock(s)
-                        await _hamClockClient.UpdateHamClocks(lat, lon);
+                        // Process complete commands in the buffer
+                        await ProcessBufferedCommands();
                     }
                 }
                 catch (OperationCanceledException)
@@ -93,10 +72,86 @@ namespace n3fjp2hamclock.helpers
             _tcpClient = new TcpClient(Host, Port);
         }
 
+        /// <summary>
+        /// Process complete commands in the message buffer
+        /// </summary>
+        private async Task ProcessBufferedCommands()
+        {
+            string bufferContent = _messageBuffer.ToString();
+            int cmdStartPos = 0;
+            int cmdEndPos = 0;
+
+            // Find complete <CMD>...</CMD> blocks in the buffer
+            while ((cmdStartPos = bufferContent.IndexOf("<CMD>", cmdStartPos)) != -1)
+            {
+                cmdEndPos = bufferContent.IndexOf("</CMD>", cmdStartPos);
+                if (cmdEndPos == -1)
+                {
+                    // No complete command found, keep data in buffer and wait for more
+                    break;
+                }
+
+                // Include the </CMD> tag in the extracted command
+                cmdEndPos += "</CMD>".Length;
+
+                // Extract the complete command
+                string completeCommand = bufferContent.Substring(cmdStartPos, cmdEndPos - cmdStartPos);
+
+                try
+                {
+                    // Process the command
+                    if (completeCommand.Contains("<CALLTABEVENT>"))
+                    {
+                        // CallTab event received
+                        var callSign = CallSignRegEx().Match(completeCommand).Value;
+                        var lat = LatRegEx().Match(completeCommand).Value;
+                        var lon = LonRegEx().Match(completeCommand).Value;
+
+                        // Print to console
+                        Logger.Log("CallTab event received:", LogLevel.Info);
+                        Logger.Log("  Call: " + callSign, LogLevel.Info);
+                        Logger.Log("  Lat: " + lat, LogLevel.Info);
+                        Logger.Log("  Lon: " + lon, LogLevel.Info);
+
+                        // Update HamClock(s) only if we have valid lat/lon
+                        if (!string.IsNullOrEmpty(lat) && !string.IsNullOrEmpty(lon))
+                        {
+                            await _hamClockClient.UpdateHamClocks(lat, lon);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log($"Error processing command: {ex.Message}", LogLevel.Error);
+                    // Continue processing other commands even if one fails
+                }
+
+                // Move to the position after this command
+                cmdStartPos = cmdEndPos;
+            }
+
+            // Remove processed commands from the buffer
+            if (cmdEndPos > 0)
+            {
+                _messageBuffer.Remove(0, cmdEndPos);
+            }
+
+            // Safety check: if buffer gets too large (likely due to malformed data),
+            // clear it to prevent memory issues
+            if (_messageBuffer.Length > 32768) // 32 KB
+            {
+                Logger.Log("Buffer too large, clearing to prevent memory issues", LogLevel.Error);
+                _messageBuffer.Clear();
+            }
+        }
+
         public void Disconnect()
         {
             Logger.Log("Disconnecting from N3FJP API...", LogLevel.Trace);
             _cancellationTokenSource?.Cancel();
+
+            // Clear the message buffer
+            _messageBuffer.Clear();
 
             if (_tcpClient == null)
             {
