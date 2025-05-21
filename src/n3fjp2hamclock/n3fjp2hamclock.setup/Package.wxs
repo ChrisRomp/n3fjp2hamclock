@@ -1,5 +1,5 @@
 ﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
-	<Package Name="N3FJP2HamClock" Manufacturer="Chris Romp NZ6F" Version="1.0.0.0" UpgradeCode="0d25c16d-76b3-45ac-9801-882dca7ede77">
+	<Package Name="N3FJP2HamClock" Manufacturer="Chris Romp NZ6F" Version="1.1.0.0" UpgradeCode="0d25c16d-76b3-45ac-9801-882dca7ede77">
 		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
 		<MediaTemplate EmbedCab="yes" />
 
