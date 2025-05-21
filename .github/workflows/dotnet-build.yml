@@ -51,6 +51,9 @@ jobs:
       # - name: Test
       #   run: dotnet test --no-build --verbosity normal
 
+      - name: Test
+        run: dotnet test .\src\n3fjp2hamclock\n3fjp2hamclock.tests\n3fjp2hamclock.tests.csproj --verbosity normal
+
       - name: Build Solution
         # yamllint disable-line rule:line-length
         run: msbuild .\src\n3fjp2hamclock\n3fjp2hamclock.sln -nologo -t:Rebuild -p:Configuration=Release -p:Platform=x86
