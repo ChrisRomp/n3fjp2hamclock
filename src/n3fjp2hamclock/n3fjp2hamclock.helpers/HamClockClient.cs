@@ -24,8 +24,7 @@ namespace n3fjp2hamclock.helpers
 
             Logger.Log("Initialized HamClock client with " + _hamClocks.Count + " HamClock(s).", LogLevel.Trace);
         }
-
-        internal async Task UpdateHamClocks(string lat, string lon)
+        public virtual async Task UpdateHamClocks(string lat, string lon)
         {
             Logger.Log("Updating " + _hamClocks.Count + " HamClock(s).", LogLevel.Trace);
 
@@ -42,7 +41,7 @@ namespace n3fjp2hamclock.helpers
             }
         }
 
-        internal async Task UpdateDx(string hamClockUri, string lat, string lon)
+        public virtual async Task UpdateDx(string hamClockUri, string lat, string lon)
         {
             var commandRoute = "/set_newdx";
 

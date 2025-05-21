@@ -8,4 +8,8 @@
     <Platforms>x86</Platforms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="n3fjp2hamclock.tests" />
+  </ItemGroup>
+
 </Project>
