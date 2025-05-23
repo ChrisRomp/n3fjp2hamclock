@@ -4,7 +4,7 @@ N3FJP2HamClock is a Windows application to synchronize HamClock with the call si
 
 This application connects to the N3FJP API server, and when you tab out of the call sign field, it will update your HamClock(s) with the DX of the entered call.
 
-![Dotnet Build](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/dotnet-build.yml/badge.svg) [![Super-Linter](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/super-linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![.NET Build](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/dotnet-build.yml/badge.svg)](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/dotnet-build.yml) [![Super Linter](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/super-linter.yml/badge.svg)](https://github.com/ChrisRomp/n3fjp2hamclock/actions/workflows/super-linter.yml)
 
 ## Downloading
 
@@ -18,7 +18,9 @@ You can also download the latest version or past versions from the [Releases](ht
 
 To install N3FJP2HamClock, run the downloaded [n3fjp2hamclock.setup.msi](https://github.com/ChrisRomp/n3fjp2hamclock/releases/latest/download/n3fjp2hamclock.setup.msi) file as you would any other application installer.
 
-NOTE: Windows and/or your browser may give a warning or block the installation because this is not a commonly-downloaded application. This is expected behavior. If you don't trust the installer, you can also [compile your own build](#building-from-source) from the source code here.
+> [!NOTE]
+> [Windows Defender SmartScreen](https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/) and/or your browser may give a warning or block the installation because this is not a commonly-downloaded application.
+> This is expected behavior. If you don't trust the installer, you can also [compile your own build](#building-from-source) from the source code here.
 
 ## Configuring N3FJP
 
