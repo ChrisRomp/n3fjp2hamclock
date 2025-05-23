@@ -18,7 +18,8 @@ You can also download the latest version or past versions from the [Releases](ht
 
 To install N3FJP2HamClock, run the downloaded [n3fjp2hamclock.setup.msi](https://github.com/ChrisRomp/n3fjp2hamclock/releases/latest/download/n3fjp2hamclock.setup.msi) file as you would any other application installer.
 
-> [!NOTE] > [Windows Defender SmartScreen](https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/) and/or your browser may give a warning or block the installation because this is not a commonly-downloaded application.
+> [!NOTE]
+> [Windows Defender SmartScreen](https://learn.microsoft.com/en-us/windows/security/operating-system-security/virus-and-threat-protection/microsoft-defender-smartscreen/) and/or your browser may give a warning or block the installation because this is not a commonly-downloaded application.
 > This is expected behavior. If you don't trust the installer, you can also [compile your own build](#building-from-source) from the source code here.
 
 ## Configuring N3FJP
