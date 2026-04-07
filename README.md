@@ -14,7 +14,7 @@ You can also download the latest version or past versions from the [Releases](ht
 
 ## Installing
 
-**Prerequisite:** This app requires the [.NET 8.0 desktop x86 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x86-installer?cid=getdotnetcore) to be installed to run. You can download that from Microsoft [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x86-installer?cid=getdotnetcore).
+**Prerequisite:** This app requires the [.NET 8.0 desktop x86 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x86-installer?cid=getdotnetcore) to be installed to run. You can download that from [Microsoft's .NET download page](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x86-installer?cid=getdotnetcore).
 
 To install N3FJP2HamClock, run the downloaded [n3fjp2hamclock.setup.msi](https://github.com/ChrisRomp/n3fjp2hamclock/releases/latest/download/n3fjp2hamclock.setup.msi) file as you would any other application installer.
 
