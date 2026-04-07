@@ -37,10 +37,10 @@ jobs:
           msbuild-architecture: x86 # optional, default is x86
 
       # Checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 8.0.x
 
@@ -61,7 +61,7 @@ jobs:
       # Store MSI
       - name: Store MSI
         if: github.ref == 'refs/heads/main' # Only store on builds from main
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: n3fjp2hamclock.setup.msi
           path: .\src\n3fjp2hamclock\n3fjp2hamclock.setup\bin\x86\Release\en-US\n3fjp2hamclock.setup.msi
