@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: setup-msbuild
-        uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
+        uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57 # v3.0.0
         with:
           # Version of Visual Studio to search; defaults to latest
           vs-version: 17.8 # optional
@@ -63,7 +63,7 @@ jobs:
       # Store MSI
       - name: Store MSI
         if: github.ref == 'refs/heads/main' # Only store on builds from main
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: n3fjp2hamclock.setup.msi
           path: .\src\n3fjp2hamclock\n3fjp2hamclock.setup\bin\x86\Release\en-US\n3fjp2hamclock.setup.msi
