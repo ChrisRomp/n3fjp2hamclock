@@ -2,6 +2,6 @@
   "threshold": 20,
   "minTokens": 50,
   "output": "./",
-  "pattern": ["**/*.cs", "**/*.xaml", "**/*.json", "**/*.config"],
+  "path": ["./src"],
   "ignore": ["**/bin/**", "**/obj/**"]
 }
